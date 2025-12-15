@@ -15,8 +15,8 @@ Le bouton « Ajouter un capture» ouvre un formulaire pour ajouter une nouvell
 
 ## Informations d'authentification
 
-Courriel : test@gmail.com
-Mot de passe : 123
+Courriel : Test@gmail.com
+Mot de passe : Qwerty123
 
 ## Procédure d'installation de l'API sur un poste local
 
@@ -26,7 +26,7 @@ Mot de passe : 123
 
 - Définir le host et le port.
 
-PS : Dans le fichier .env.example, l’URL mongodb://localhost:27017/personnage_historique se termine par personnage_historique, ce qui permet de préciser la base de données à utiliser.
+PS : Dans le fichier .env.example, l’URL mongodb://localhost:27017/DevWeb3 se termine par DevWeb3, ce qui permet de préciser la base de données à utiliser.
 
 ## Procédure de création de la base de données
 
@@ -36,6 +36,6 @@ PS : Dans le fichier .env.example, l’URL mongodb://localhost:27017/personnage_
 
 ## URL de l'api publiée
 
-- https://histoireapi-e8czf4c8ehcvdgcw.canadacentral-01.azurewebsites.net
+- https://projetweb3-egb7ashnahhwh7fv.canadacentral-01.azurewebsites.net
 
-- Pour la documentation de l'api : https://histoireapi-e8czf4c8ehcvdgcw.canadacentral-01.azurewebsites.net/api/docs
+- Désolé pas de doc
