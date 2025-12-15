@@ -143,9 +143,6 @@ export default function ListeCapture() {
         );
     }
   };
-  const isApplyDisabled =
-    loading || (filterType !== 'none' && filterValue.trim() === '');
-
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
@@ -171,21 +168,6 @@ export default function ListeCapture() {
           </select>
 
           {renderFilterControl()}
-
-          <button
-            onClick={handleApplyFilter}
-            disabled={isApplyDisabled}
-            className={`
-              w-full md:w-auto px-4 py-2 rounded-lg font-semibold transition
-              ${
-                isApplyDisabled
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              }
-            `}
-          >
-            {loading ? 'Chargement...' : 'Appliquer le Filtre'}
-          </button>
         </div>
       </div>
       <a
