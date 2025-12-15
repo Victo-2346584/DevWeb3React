@@ -97,15 +97,7 @@ export default function ListeCapture() {
     setFilterType(newFilterType);
     setFilterValue('');
   };
-  /*
-   * Code généré par : Google. (2024). gemini (version 3 août 2023) [Modèle massif de
-   * langage]. https://gemini.google.com/app?hl=fr
-   * */
-  const handleApplyFilter = () => {
-    if (filterType === 'none') {
-      fetchCaptures();
-    }
-  };
+
   /*
    * Code généré par : Google. (2024). gemini (version 3 août 2023) [Modèle massif de
    * langage]. https://gemini.google.com/app?hl=fr
