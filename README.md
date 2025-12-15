@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+## Procédure d'installation de l'application sur un poste local
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- télécharger le projet
+- Démarrer le projet en exécutant la commande "npm run dev" dans la racine du projet.
 
-Currently, two official plugins are available:
+## Description sommaire de l'application publiée
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Le site en ligne de capture de poisson qui garde les poissons capture des utilisateur.
+L’accès au site nécessite une authentification préalable.
+La page d’accueil montre les deux boutons pour voir la liste où pour ajouter une capture.
+La page «Liste» affiche la liste de tous les captures disponibles dans la base de données.
+Cette page comporte également des boutons permettant de le supprimer, de le modifier ou d'aller ajouter.
+Une menu déroulant permet de sélectionner le type de filtres soit l'espèces ou la date.
+Le bouton « Ajouter un capture» ouvre un formulaire pour ajouter une nouvelle captures.
 
-## React Compiler
+## Informations d'authentification
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Courriel : test@gmail.com
+Mot de passe : 123
 
-## Expanding the ESLint configuration
+## Procédure d'installation de l'API sur un poste local
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Copier le fichier .env.example et créer un fichier .env à la racine du projet.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Modifier la variable MONGODB afin qu’elle contienne la chaîne de connexion MongoDB, qu’elle soit locale ou en ligne.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Définir le host et le port.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+PS : Dans le fichier .env.example, l’URL mongodb://localhost:27017/personnage_historique se termine par personnage_historique, ce qui permet de préciser la base de données à utiliser.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Procédure de création de la base de données
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Créer une BD sur MongoDB utilisant le même nom de BD que l'URL de connection.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Importer histoire.json se trouvant dans le dossier /dev/histoire.json qui comporte des données déjà existant.
+
+## URL de l'api publiée
+
+- https://histoireapi-e8czf4c8ehcvdgcw.canadacentral-01.azurewebsites.net
+
+- Pour la documentation de l'api : https://histoireapi-e8czf4c8ehcvdgcw.canadacentral-01.azurewebsites.net/api/docs

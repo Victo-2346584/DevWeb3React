@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { createContext, useState } from 'react';
+import { createContext, useState, type ReactNode } from 'react';
+
+// --- Constantes de Stockage ---
+const TOKEN_STORAGE_KEY = 'authToken';
 
 export type LoginContextType = {
   isLoggedIn: boolean;
   token: string;
-  login: (email: string, password: string) => Promise<boolean>;
+  login: (courriel: string, motPasse: string) => Promise<boolean>;
   logout: () => void;
 };
 
@@ -15,33 +18,54 @@ export const LoginContext = createContext<LoginContextType>({
   logout: () => {},
 });
 
-export default function LoginProvider(props: any) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState('');
+type LoginProviderProps = {
+  children: ReactNode;
+};
 
-  async function login(email: string, password: string) {
-    return axios
-      .post('http://localhost:3001/api/users/generatetoken', {
-        email,
-        password,
-      })
-      .then((response) => {
-        const { token } = response.data;
-        if (token) {
-          setIsLoggedIn(true);
-          setToken(token);
-          return true;
-        } else {
-          setIsLoggedIn(false);
-          setToken('');
-          return false;
-        }
-      });
-  }
+export default function LoginProvider(props: LoginProviderProps) {
+  const initialToken = localStorage.getItem(TOKEN_STORAGE_KEY) || '';
+
+  const [token, setToken] = useState<string>(initialToken);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!initialToken);
 
   function logout() {
+    localStorage.removeItem(TOKEN_STORAGE_KEY);
+
     setToken('');
     setIsLoggedIn(false);
+  }
+
+  function login(courriel: string, motPasse: string): Promise<boolean> {
+    return axios
+      .post(
+        'https://projetweb3-egb7ashnahhwh7fv.canadacentral-01.azurewebsites.net/api/generatetoken/',
+        {
+          utilisateur: {
+            courriel: courriel,
+            motPasse: motPasse,
+          },
+        },
+      )
+      .then((response) => {
+        const { token: newToken } = response.data; // Renommer pour éviter le conflit
+
+        if (newToken) {
+          setIsLoggedIn(true);
+          setToken(newToken);
+
+          localStorage.setItem(TOKEN_STORAGE_KEY, newToken);
+
+          return true;
+        } else {
+          logout();
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur d'authentification:", error);
+        logout();
+        return false;
+      });
   }
 
   const values = { isLoggedIn, token, login, logout };
